@@ -11,10 +11,20 @@ Different version of ALBERT pre-trained model for Chinese, including TensorFlow,
 
 海量中文语料上预训练ALBERT模型：参数更少，效果更好。预训练小模型也能拿下13项NLP任务，ALBERT三大改造登顶GLUE基准
 
-一键运行10个数据集、9个基线模型、不同任务上模型效果的详细对比，见<a href="https://github.com/CLUEbenchmark/CLUE">中文任务基准测评 CLUE benchmark</a>
+一键运行10个数据集、9个基线模型、不同任务上模型效果的详细对比，见<a href="http://www.CLUEbenchmarks.com">中文语言理解基准测评 CLUE benchmark</a>
 
 <img src="https://github.com/brightmart/albert_zh/blob/master/resources/albert_tiny_compare_s.jpg"  width="90%" height="70%" />
 
+
+一键运行CLUE中文任务：6个中文分类或句子对任务（新）
+---------------------------------------------------------------------
+    使用方式：
+    1、克隆项目
+       git clone https://github.com/brightmart/albert_zh.git
+    2、运行一键运行脚本(GPU方式): 会自动下载模型和所有任务数据并开始运行。
+       bash run_classifier_clue.sh
+       执行该一键运行脚本将会自动下载所有任务数据，并为所有任务找到最优模型，然后测试得到提交结果
+    
 
 模型下载 Download Pre-trained Models of Chinese
 -----------------------------------------------
@@ -54,6 +64,25 @@ Different version of ALBERT pre-trained model for Chinese, including TensorFlow,
    
     参数量和模型大小为bert_base的二分之一；需要一张大的显卡；完整测试对比将后续添加；batch_size不能太小，否则可能影响精度
 
+### 快速加载
+依托于[Huggingface-Transformers 2.2.2](https://github.com/huggingface/transformers)，可轻松调用以上模型。
+```
+tokenizer = AutoTokenizer.from_pretrained("MODEL_NAME")
+model = AutoModel.from_pretrained("MODEL_NAME")
+```
+
+其中`MODEL_NAME`对应列表如下：
+
+| 模型名 | MODEL_NAME |
+| - | - |
+| albert_tiny_google_zh | voidful/albert_chinese_tiny |
+| albert_small_google_zh | voidful/albert_chinese_small  |
+| albert_base_zh (from google) | voidful/albert_chinese_base   |
+| albert_large_zh (from google) | voidful/albert_chinese_large   |
+| albert_xlarge_zh (from google) | voidful/albert_chinese_xlarge   |
+| albert_xxlarge_zh (from google) | voidful/albert_chinese_xxlarge   |
+
+更多通过transformers使用albert的<a href='https://huggingface.co/models?search=albert_chinese'>示例</a>
 
 预训练 Pre-training
 -----------------------------------------------
